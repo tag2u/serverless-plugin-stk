@@ -19,6 +19,6 @@ provider:
 
 functions:
   cronHandler:
-    handler: handler.handler
+    handler: src/handler.handler
     events:
       - schedule: cron(0 5 * * ? *) # will run every day at 5am

@@ -5,7 +5,7 @@ metadata:
   display-name: serverless
   description: Descreva seu plugin explicando o propósito
   picture: plugin.png
-  version: 0.0.18
+  version: 0.0.19
 spec:
   type: app
   compatibility:
