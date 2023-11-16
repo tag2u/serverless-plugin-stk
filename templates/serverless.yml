@@ -18,6 +18,11 @@ provider:
   timeout: 500
 
 functions:
+  api:
+    handler: src/handler.status
+    events:
+      - http: GET /{proxy+}
+      - http: GET /status
   cronHandler:
     handler: src/handler.handler
     events:
