@@ -4,37 +4,27 @@ metadata:
   name: serverless
   display-name: serverless
   description: Descreva seu plugin explicando o propósito
-  version: 0.0.1
   picture: plugin.png
+  version: 0.0.6
 spec:
   type: app
   compatibility:
-    - python
+    - javascript
   about: docs/about.md
   implementation: docs/implementation.md
   release-notes: docs/release-notes-0.0.1.md
   requirements: docs/requirements.md
   single-use: False
   technologies: # Ref: https://docs.stackspot.com/create-use/create-content/yaml-files/plugin-yaml/#technologies-1
-    - Api
+    - TypeScript
+    - AWS Lambda
   stk-projects-only: false
   inputs:
-    - label: Type name of your resource
-      name: resource
+    - label: Project name (everything in lowercase and underscore-separated)
+      name: project_name
       type: text
-      required: true
-      default: Client
-      pattern: '([A-Z][a-z]+)+'
-      help: 'Inform your resource name (e.g.: Client)'
-    - label: Choose http method of new endpoint
-      name: method
-      type: text
-      items:
-        - GET
-        - POST
-        - PUT
-        - DELETE
-        - PATCH
-      default: GET
-      required: true
-      help: 'Inform the method of the endpoint (e.g.: post or delete)'
+      pattern: '^[a-z]+(_[a-z]+)*$'
+
+    - label: Add pg package, to access postgre database?
+      name: add_pg
+      type: bool

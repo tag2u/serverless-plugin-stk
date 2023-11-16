@@ -1,0 +1,24 @@
+service: {{project_name}}
+
+frameworkVersion: "3"
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  STAGE: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: production
+  region: sa-east-1
+  memorySize: 1024
+  timeout: 500
+
+functions:
+  cronHandler:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 5 * * ? *) # will run every day at 5am

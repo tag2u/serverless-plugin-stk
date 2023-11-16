@@ -1,0 +1,40 @@
+name: Deploy to Amazon Lambda [MAIN]
+
+on:
+  push:
+    branches:
+      - "main"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    name: Deploy MAIN
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Verify cache
+        uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.lock') }}
+
+      - name: Install and Build
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i --force
+
+      - name: Deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_LAMBDA_PROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_LAMBDA_SECRET_KEY_PROD }}
+          SLS_INTERACTIVE_SETUP_ENABLE: 0
