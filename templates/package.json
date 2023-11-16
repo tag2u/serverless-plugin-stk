@@ -9,10 +9,9 @@
     "start": "sls offline start"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
-    {{#if add_pg}}
-    "pg": "^8.8.0"
-    {{/if}}
+    {% for package in packages%}
+      {{package}},
+    {% endfor %}
   },
   "devDependencies": {
     "serverless-offline": "^11.5.0",

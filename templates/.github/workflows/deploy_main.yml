@@ -1,3 +1,4 @@
+{% raw %}
 name: Deploy to Amazon Lambda [MAIN]
 
 on:
@@ -38,3 +39,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_LAMBDA_PROD }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_LAMBDA_SECRET_KEY_PROD }}
           SLS_INTERACTIVE_SETUP_ENABLE: 0
+{% endraw %}
